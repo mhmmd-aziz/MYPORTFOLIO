@@ -3,6 +3,7 @@ import { ArrowUpRight, MapPin, Download, Code2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
 import { useLanguage } from '../context/LanguageContext'
+// @ts-ignore - Bypass TS7016 for JSX components
 import Lanyard from '../components/lanyard/Lanyard.jsx'
 
 import TechText from '../components/TechText'

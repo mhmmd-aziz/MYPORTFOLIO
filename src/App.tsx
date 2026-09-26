@@ -11,6 +11,7 @@ import Achievements from './pages/Achievements'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 import BoxLoader from './components/ui/box-loader'
+// @ts-ignore - Bypass TS7016 for JSX components
 import ClickSpark from './components/ui/ClickSpark'
 
 export default function App() {
