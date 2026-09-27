@@ -140,7 +140,7 @@ export default function Home() {
                   {lang === 'en' ? 'INFORMATICS ENGINEERING STUDENT' : 'MAHASISWA TEKNIK INFORMATIKA'}
                 </p>
                 <p>
-                  {lang === 'en' ? 'DIGITAL BUILDER · AI · WEB · IOT' : 'PENGEMBANG DIGITAL · AI · WEB · IOT'}
+                  {lang === 'en' ? 'JUNIOR FULLSTACK DEVELOPER · JUNIOR ML ENGINEER' : 'JUNIOR FULLSTACK DEVELOPER · JUNIOR ML ENGINEER'}
                 </p>
                 <p className="flex items-center gap-2 mt-4"><MapPin size={14}/> ACEH, INDONESIA</p>
               </motion.div>
