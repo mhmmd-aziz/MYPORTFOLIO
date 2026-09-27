@@ -83,6 +83,8 @@ export default function Home() {
           <img 
             src="/profile_kiri.png" 
             alt="Profile"
+            width={600}
+            height={800}
             className="h-full max-w-none w-auto object-contain object-bottom origin-bottom opacity-40 md:opacity-100"
           />
         </motion.div>
@@ -178,6 +180,8 @@ export default function Home() {
               <img 
                 src="/profile_kiri.png" 
                 alt="Profile"
+                width={300}
+                height={400}
                 className="w-full max-w-[300px] h-auto object-contain opacity-90"
               />
             </motion.div>
@@ -228,7 +232,9 @@ export default function Home() {
               <img 
                 src="/aziz who.JPG" 
                 alt="Muhammad Aziz" 
-                className="w-full h-auto max-h-[500px] object-cover filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                width={600}
+                height={500}
+                className="w-full h-auto max-h-[500px] object-cover filter grayscale opacity-80 active:grayscale-0 active:opacity-100 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
               />
               {/* Decorative border */}
               <div className="absolute inset-0 border border-white/20 group-hover:border-acid-lime/50 transition-colors duration-700 pointer-events-none" />

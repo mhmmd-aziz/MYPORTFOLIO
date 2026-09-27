@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Plane } from 'lucide-react'
 
 import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Work from './pages/Work'
-import Certificates from './pages/Certificates'
-import Achievements from './pages/Achievements'
-import Experience from './pages/Experience'
-import Contact from './pages/Contact'
 import BoxLoader from './components/ui/box-loader'
+
+// Lazy load pages for performance optimization
+const Home = lazy(() => import('./pages/Home'))
+const Work = lazy(() => import('./pages/Work'))
+const Certificates = lazy(() => import('./pages/Certificates'))
+const Achievements = lazy(() => import('./pages/Achievements'))
+const Experience = lazy(() => import('./pages/Experience'))
+const Contact = lazy(() => import('./pages/Contact'))
+
 // @ts-ignore - Bypass TS7016 for JSX components
 import ClickSpark from './components/ui/ClickSpark'
 
@@ -105,21 +108,23 @@ export default function App() {
 
       <main className="pt-16">
         <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="/achievements" element={<Achievements />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+          <Suspense fallback={<div className="h-screen w-full bg-[#050505] flex justify-center items-center"><BoxLoader /></div>}>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<Home />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/certificates" element={<Certificates />} />
+              <Route path="/achievements" element={<Achievements />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Suspense>
         </AnimatePresence>
       </main>
 
       <footer className="border-t border-white/10 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-center md:text-left">
-            <h4 className="font-display text-2xl mb-1">MUHAMMAD AZIZ</h4>
+            <h2 className="font-display text-2xl mb-1">MUHAMMAD AZIZ</h2>
             <p className="font-mono text-xs text-white/50 tracking-widest">INFORMATICS ENGINEERING · PNL</p>
           </div>
           <div className="text-center md:text-right font-mono text-xs text-white/40 space-y-1">

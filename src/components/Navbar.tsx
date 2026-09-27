@@ -59,6 +59,7 @@ export default function Navbar() {
           <button 
             onClick={toggleLanguage}
             className="flex items-center gap-2 font-mono text-sm border border-white/20 px-3 py-1 hover:border-acid-lime hover:text-acid-lime transition-colors"
+            aria-label="Toggle language"
           >
             <Globe size={14} />
             {lang === 'en' ? 'EN' : 'ID'}
@@ -67,6 +68,7 @@ export default function Navbar() {
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden flex items-center p-1 text-white hover:text-acid-lime transition-colors"
+            aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
