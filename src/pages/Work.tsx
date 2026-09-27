@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight , Eye } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import { useLanguage } from '../context/LanguageContext'
 
@@ -106,9 +106,9 @@ export default function Work() {
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
             className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black relative overflow-hidden cursor-pointer" onClick={() => openModal(["/work/petrochain0.jpg","/work/petrochain1.jpg","/work/petrochain2.jpg","/work/petrochain3.jpg","/work/petrochain4.jpg","/work/petrochain5.jpg","/work/petrochain6.jpg","/work/petrochain7.jpg"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/petrochain0.jpg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <div className="absolute top-0 right-0 p-4 font-mono text-acid-lime text-xs">{t.featured}</div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">PETROCHAIN</h3>
@@ -128,9 +128,9 @@ export default function Work() {
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5, delay: 0.2 }}
             className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black relative overflow-hidden cursor-pointer" onClick={() => openModal(["/work/getsmart.png","/work/getsmart1.png"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/getsmart.png" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <div className="absolute top-0 right-0 p-4 font-mono text-acid-lime text-xs">{t.live}</div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">PFASMART</h3>
@@ -156,9 +156,9 @@ export default function Work() {
             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
             className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/byteshiled1.jpg","/work/byteshiled2.jpg","/work/byteshiled3.jpg"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/byteshiled1.jpg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white mb-2">BYTESHIELD</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">STATIC MALWARE ANALYSIS</p>
@@ -175,9 +175,9 @@ export default function Work() {
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
             className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/aqua sentinel 1.jpg","/work/aqua sentinel 2.jpg"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/aqua sentinel 1.jpg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white mb-2">AQUA SENTINEL</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">IOT FLOOD EARLY-WARNING</p>
@@ -194,9 +194,9 @@ export default function Work() {
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
             className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/sdgs 1.png","/work/sdgs2.png"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/sdgs 1.png" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white mb-2">SDG SENTIMENT</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">DATA SCIENCE / NLP</p>
@@ -213,9 +213,9 @@ export default function Work() {
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5, delay: 0.2 }}
             className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/INFRASTRUCTURE LAB 1.jpg","/work/INFRASTRUCTURE LAB2.jpg"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/INFRASTRUCTURE LAB 1.jpg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white mb-2">INFRASTRUCTURE LAB</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">SYSTEMS ADMINISTRATION</p>
@@ -232,9 +232,9 @@ export default function Work() {
             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
             className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/cococarbone1.png","/work/cococarbone2.png"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/cococarbone1.png" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white mb-2">COCOCARBONE</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">COMPANY PROFILE / WEB</p>
@@ -251,9 +251,9 @@ export default function Work() {
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
             className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/securitylab1.png","/work/security lab2.png"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/securitylab1.png" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white mb-2">SECURITY LABS</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">PENTESTING & RESEARCH</p>
@@ -270,9 +270,9 @@ export default function Work() {
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
             className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/3dcadprorttyp1.jpg","/work/3dcadprorttyp2.jpg"])}
           >
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/3dcadprorttyp1.jpg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white mb-2">3D PROTOTYPING</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">FREECAD & 3D PRINTING</p>
@@ -287,9 +287,9 @@ export default function Work() {
           {/* NEW PROJECTS BELOW */}
           {/* Salon App */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/salon we app.jpeg', '/work/salon web app2.jpeg'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/salon we app.jpeg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">SALON APP</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">WEB APPLICATION</p>
@@ -321,9 +321,9 @@ export default function Work() {
 
           {/* Dashboard MHS */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/dashboard mhs1.png'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/dashboard mhs1.png" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">DASHBOARD MHS</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">FRONTEND WEB</p>
@@ -335,9 +335,9 @@ export default function Work() {
 
           {/* e-Surat JTIK */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/suratjttik.jpeg'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/suratjttik.jpeg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">E-SURAT JTIK</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">WEB APPLICATION</p>
@@ -359,9 +359,9 @@ export default function Work() {
 
           {/* Rental App */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/rental app1.jpeg', '/work/rental app 2.jpeg'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/rental app1.jpeg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">RENTAL APP</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">WEB APPLICATION</p>
@@ -373,9 +373,9 @@ export default function Work() {
 
           {/* Sekilas Tugas */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/sekilastaask1.jpeg', '/work/seilastask2.jpeg'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/sekilastaask1.jpeg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">SEKILAS TUGAS</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">WEB APPLICATION</p>
@@ -387,9 +387,9 @@ export default function Work() {
 
           {/* Admin Kasir Imzy */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/kasir imzy1.jpg', '/work/kasir imzy 2.jpg', '/work/kasir imzy 3.jpg'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/kasir imzy1.jpg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">IMZY POS</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">REACT SPA / FIREBASE</p>
@@ -401,9 +401,9 @@ export default function Work() {
 
           {/* Suara Mata */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/SUARA MATA 0.jpeg', '/work/SUARA MATA1.jpeg'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/SUARA MATA 0.jpeg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">SUARA MATA</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">ARTIFICIAL INTELLIGENCE</p>
@@ -416,9 +416,9 @@ export default function Work() {
 
           {/* Plant Disease App */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/plantdieseup.png'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/plantdieseup.png" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">PLANT DISEASE APP</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">FULLSTACK AI PLATFORM</p>
@@ -430,9 +430,9 @@ export default function Work() {
 
           {/* Komit Web */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/komit1.png', '/work/komit2.png'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/komit1.png" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">KOMIT WEB</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">WEB APPLICATION</p>
@@ -444,9 +444,9 @@ export default function Work() {
 
           {/* Manajemen Ruang */}
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/manajemeng raungan 1.jpeg'])}>
-            {/* Image Preview */}
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none overflow-hidden rounded-bl-[100px] flex justify-end items-start">
-              <img src="/work/manajemeng raungan 1.jpeg" alt="Preview" className="w-full h-full object-cover" />
+            {/* View Icon */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
             </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">MANAJEMEN RUANG</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">WEB APPLICATION</p>
