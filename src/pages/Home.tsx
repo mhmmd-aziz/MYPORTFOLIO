@@ -3,13 +3,11 @@ import { ArrowUpRight, MapPin, Download, Code2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
 import { useLanguage } from '../context/LanguageContext'
-// @ts-ignore - Bypass TS7016 for JSX components
-import Lanyard from '../components/lanyard/Lanyard.jsx'
-const LanyardComponent: any = Lanyard;
-import LanyardErrorBoundary from '../components/lanyard/LanyardErrorBoundary'
+// Lanyard is loaded dynamically to avoid blocking initial page render
 
 import TechText from '../components/TechText'
 import { useEffect, useRef, useState } from 'react'
+import LanyardErrorBoundary from '../components/lanyard/LanyardErrorBoundary'
 
 const WordReveal = ({ text }: { text: string }) => {
   const words = text.split(" ");
@@ -40,12 +38,23 @@ const WordReveal = ({ text }: { text: string }) => {
 export default function Home() {
   const { lang } = useLanguage()
   const lanyardContainerRef = useRef(null)
-  const isLanyardInView = useInView(lanyardContainerRef, { once: true, amount: 0.05 })
-  // Once Lanyard mounts, keep it forever to avoid 3D engine restart
+  const isLanyardInView = useInView(lanyardContainerRef, { once: true, amount: 0.01, margin: '400px 0px 0px 0px' })
+  // Dynamically import Lanyard only when scrolled near the section
   const [lanyardMounted, setLanyardMounted] = useState(false)
+  const [LanyardComponent, setLanyardComponent] = useState<any>(null)
+  const [lanyardReady, setLanyardReady] = useState(false)
+
   useEffect(() => {
     if (isLanyardInView && !lanyardMounted) {
       setLanyardMounted(true)
+      // Dynamic import so Three.js + Rapier don't block page load
+      import('../components/lanyard/Lanyard.jsx')
+        .then(mod => {
+          setLanyardComponent(() => mod.default)
+          // Small delay so physics initializes before reveal
+          setTimeout(() => setLanyardReady(true), 100)
+        })
+        .catch(err => console.warn('[Lanyard] Failed to load:', err))
     }
   }, [isLanyardInView, lanyardMounted])
 
@@ -396,9 +405,21 @@ export default function Home() {
           
           {/* Left: Lanyard Component */}
           <div ref={lanyardContainerRef} className="w-full h-[600px] lg:h-[800px] border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent flex items-center justify-center relative overflow-hidden">
-            {lanyardMounted && (
+            {/* Skeleton placeholder while lanyard loads */}
+            {(!lanyardReady) && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4 opacity-30">
+                  <div className="w-16 h-24 border border-white/20 rounded animate-pulse" />
+                  <div className="w-1 h-16 bg-white/20 animate-pulse" />
+                  <div className="w-0.5 h-32 bg-white/10" />
+                </div>
+              </div>
+            )}
+            {lanyardMounted && LanyardComponent && (
               <LanyardErrorBoundary>
-                <LanyardComponent position={[0, -4, 22]} gravity={[0, -40, 0]} frontImage="/LANYARD.png" backImage="/LANYARD.png" lanyardImage="/logo.png" lanyardWidth={1.5} />
+                <div className={`w-full h-full transition-opacity duration-500 ${lanyardReady ? 'opacity-100' : 'opacity-0'}`}>
+                  <LanyardComponent position={[0, -4, 22]} gravity={[0, -40, 0]} frontImage="/LANYARD.png" backImage="/LANYARD.png" lanyardImage="/logo.png" lanyardWidth={1.5} />
+                </div>
               </LanyardErrorBoundary>
             )}
           </div>

@@ -28,35 +28,39 @@ export default function App() {
   }, [location.pathname])
 
   useEffect(() => {
+    const duration = 1200
     const startTime = Date.now()
-    const duration = 2500
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime
       const currentProgress = Math.min(100, Math.floor((elapsed / duration) * 100))
       setProgress(currentProgress)
       if (elapsed >= duration) clearInterval(interval)
-    }, 30)
+    }, 20)
 
-    // Finish loading when page is truly ready, or after 4s max
+    let finished = false
     const finish = () => {
+      if (finished) return
+      finished = true
       setProgress(100)
-      setTimeout(() => setIsLoading(false), 300)
+      setTimeout(() => setIsLoading(false), 200)
     }
 
-    const hardTimeout = setTimeout(finish, 4000)
+    // Hard cap: never wait more than 1.5s
+    const hardTimeout = setTimeout(finish, 1500)
 
-    if (document.readyState === 'complete') {
-      // Already loaded (e.g. hot reload / second visit from cache)
-      setTimeout(finish, 800)
+    if (document.readyState !== 'loading') {
+      // DOM already parsed (hot reload / cached page)
+      setTimeout(finish, 200)
     } else {
-      window.addEventListener('load', finish, { once: true })
+      // Fire as soon as DOM is parsed — don't wait for images/GLBs
+      document.addEventListener('DOMContentLoaded', finish, { once: true })
     }
 
     return () => {
       clearTimeout(hardTimeout)
       clearInterval(interval)
-      window.removeEventListener('load', finish)
+      document.removeEventListener('DOMContentLoaded', finish)
     }
   }, [])
 
