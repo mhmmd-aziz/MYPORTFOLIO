@@ -39,7 +39,7 @@ const WordReveal = ({ text }: { text: string }) => {
 export default function Home() {
   const { lang } = useLanguage()
   const lanyardContainerRef = useRef(null)
-  const isLanyardInView = useInView(lanyardContainerRef, { once: true, amount: 0.1 })
+  const isLanyardInView = useInView(lanyardContainerRef, { once: true, amount: 0.05 })
 
   useEffect(() => {
     if (window.location.hash === '#about') {
@@ -388,9 +388,9 @@ export default function Home() {
           
           {/* Left: Lanyard Component */}
           <div ref={lanyardContainerRef} className="w-full h-[600px] lg:h-[800px] border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent flex items-center justify-center relative overflow-hidden">
-            {isLanyardInView && (
+            <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0, opacity: isLanyardInView ? 1 : 0, transition: 'opacity 0.5s' }}>
               <LanyardComponent position={[0, -4, 22]} gravity={[0, -40, 0]} frontImage="/LANYARD.png" backImage="/LANYARD.png" lanyardImage="/logo.png" lanyardWidth={1.5} />
-            )}
+            </div>
           </div>
 
           {/* Right: Text Elements */}
