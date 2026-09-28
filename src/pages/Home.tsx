@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext'
 // @ts-ignore - Bypass TS7016 for JSX components
 import Lanyard from '../components/lanyard/Lanyard.jsx'
 const LanyardComponent: any = Lanyard;
+import LanyardErrorBoundary from '../components/lanyard/LanyardErrorBoundary'
 
 import TechText from '../components/TechText'
 import { useEffect, useRef, useState } from 'react'
@@ -396,7 +397,9 @@ export default function Home() {
           {/* Left: Lanyard Component */}
           <div ref={lanyardContainerRef} className="w-full h-[600px] lg:h-[800px] border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent flex items-center justify-center relative overflow-hidden">
             {lanyardMounted && (
-              <LanyardComponent position={[0, -4, 22]} gravity={[0, -40, 0]} frontImage="/LANYARD.png" backImage="/LANYARD.png" lanyardImage="/logo.png" lanyardWidth={1.5} />
+              <LanyardErrorBoundary>
+                <LanyardComponent position={[0, -4, 22]} gravity={[0, -40, 0]} frontImage="/LANYARD.png" backImage="/LANYARD.png" lanyardImage="/logo.png" lanyardWidth={1.5} />
+              </LanyardErrorBoundary>
             )}
           </div>
 

@@ -110,7 +110,7 @@ export default function Work() {
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
             </div>
-            <div className="absolute top-0 right-0 p-4 font-mono text-acid-lime text-xs">{t.featured}</div>
+            <div className="absolute top-0 left-0 p-4 font-mono text-acid-lime text-xs">{t.featured}</div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">PETROCHAIN</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">INTELLIGENT VERIFICATION</p>
             
@@ -132,7 +132,7 @@ export default function Work() {
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
             </div>
-            <div className="absolute top-0 right-0 p-4 font-mono text-acid-lime text-xs">{t.live}</div>
+            <div className="absolute top-0 left-0 p-4 font-mono text-acid-lime text-xs">{t.live}</div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">PFASMART</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">AI LEARNING COMPANION</p>
             

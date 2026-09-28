@@ -35,19 +35,28 @@ export default function App() {
       const elapsed = Date.now() - startTime
       const currentProgress = Math.min(100, Math.floor((elapsed / duration) * 100))
       setProgress(currentProgress)
-      
-      if (elapsed >= duration) {
-        clearInterval(interval)
-      }
+      if (elapsed >= duration) clearInterval(interval)
     }, 30)
 
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2800)
-    
+    // Finish loading when page is truly ready, or after 4s max
+    const finish = () => {
+      setProgress(100)
+      setTimeout(() => setIsLoading(false), 300)
+    }
+
+    const hardTimeout = setTimeout(finish, 4000)
+
+    if (document.readyState === 'complete') {
+      // Already loaded (e.g. hot reload / second visit from cache)
+      setTimeout(finish, 800)
+    } else {
+      window.addEventListener('load', finish, { once: true })
+    }
+
     return () => {
-      clearTimeout(timer)
+      clearTimeout(hardTimeout)
       clearInterval(interval)
+      window.removeEventListener('load', finish)
     }
   }, [])
 
