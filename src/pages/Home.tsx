@@ -8,7 +8,7 @@ import Lanyard from '../components/lanyard/Lanyard.jsx'
 const LanyardComponent: any = Lanyard;
 
 import TechText from '../components/TechText'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const WordReveal = ({ text }: { text: string }) => {
   const words = text.split(" ");
@@ -40,6 +40,13 @@ export default function Home() {
   const { lang } = useLanguage()
   const lanyardContainerRef = useRef(null)
   const isLanyardInView = useInView(lanyardContainerRef, { once: true, amount: 0.05 })
+  // Once Lanyard mounts, keep it forever to avoid 3D engine restart
+  const [lanyardMounted, setLanyardMounted] = useState(false)
+  useEffect(() => {
+    if (isLanyardInView && !lanyardMounted) {
+      setLanyardMounted(true)
+    }
+  }, [isLanyardInView, lanyardMounted])
 
   useEffect(() => {
     if (window.location.hash === '#about') {
@@ -388,9 +395,9 @@ export default function Home() {
           
           {/* Left: Lanyard Component */}
           <div ref={lanyardContainerRef} className="w-full h-[600px] lg:h-[800px] border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent flex items-center justify-center relative overflow-hidden">
-            <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0, opacity: isLanyardInView ? 1 : 0, transition: 'opacity 0.5s' }}>
+            {lanyardMounted && (
               <LanyardComponent position={[0, -4, 22]} gravity={[0, -40, 0]} frontImage="/LANYARD.png" backImage="/LANYARD.png" lanyardImage="/logo.png" lanyardWidth={1.5} />
-            </div>
+            )}
           </div>
 
           {/* Right: Text Elements */}

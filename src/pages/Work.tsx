@@ -154,7 +154,7 @@ export default function Work() {
           {/* ByteShield */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
-            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/byteshiled1.jpg","/work/byteshiled2.jpg","/work/byteshiled3.jpg"])}
+            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(["/work/byteshiled1.jpg","/work/byteshiled2.jpg","/work/byteshiled3.jpg"])}
           >
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
@@ -173,7 +173,7 @@ export default function Work() {
           {/* Aqua Sentinel */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
-            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/aqua sentinel 1.jpg","/work/aqua sentinel 2.jpg"])}
+            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(["/work/aqua sentinel 1.jpg","/work/aqua sentinel 2.jpg"])}
           >
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
@@ -192,7 +192,7 @@ export default function Work() {
           {/* SDG Sentiment Analysis */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
-            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/sdgs 1.png","/work/sdgs2.png"])}
+            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(["/work/sdgs 1.png","/work/sdgs2.png"])}
           >
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
@@ -211,7 +211,7 @@ export default function Work() {
           {/* Server Infrastructure */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5, delay: 0.2 }}
-            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/INFRASTRUCTURE LAB 1.jpg","/work/INFRASTRUCTURE LAB2.jpg"])}
+            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(["/work/INFRASTRUCTURE LAB 1.jpg","/work/INFRASTRUCTURE LAB2.jpg"])}
           >
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
@@ -230,7 +230,7 @@ export default function Work() {
           {/* CocoCarbone */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
-            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/cococarbone1.png","/work/cococarbone2.png"])}
+            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(["/work/cococarbone1.png","/work/cococarbone2.png"])}
           >
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
@@ -249,7 +249,7 @@ export default function Work() {
           {/* Cybersecurity Labs */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/securitylab1.png","/work/security lab2.png"])}
+            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(["/work/securitylab1.png","/work/security lab2.png"])}
           >
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
@@ -268,7 +268,7 @@ export default function Work() {
           {/* 3D Printing & CAD */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(["/work/3dcadprorttyp1.jpg","/work/3dcadprorttyp2.jpg"])}
+            className="group border border-white/10 hover:border-white/30 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(["/work/3dcadprorttyp1.jpg","/work/3dcadprorttyp2.jpg"])}
           >
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
@@ -286,7 +286,7 @@ export default function Work() {
 
           {/* NEW PROJECTS BELOW */}
           {/* Salon App */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/salon we app.jpeg', '/work/salon web app2.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/salon we app.jpeg', '/work/salon web app2.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -310,7 +310,7 @@ export default function Work() {
           </motion.div>
 
           {/* DailyNotes */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/dailynotes.jpeg', '/work/dailynotes1.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/dailynotes.jpeg', '/work/dailynotes1.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -324,7 +324,7 @@ export default function Work() {
           </motion.div>
 
           {/* Dashboard MHS */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/dashboard mhs1.png'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/dashboard mhs1.png'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -338,7 +338,7 @@ export default function Work() {
           </motion.div>
 
           {/* e-Surat JTIK */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/suratjttik.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/suratjttik.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -352,7 +352,7 @@ export default function Work() {
           </motion.div>
 
           {/* Finance App */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/financeapp.jpeg', '/work/financeapp1.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/financeapp.jpeg', '/work/financeapp1.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -366,7 +366,7 @@ export default function Work() {
           </motion.div>
 
           {/* Rental App */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/rental app1.jpeg', '/work/rental app 2.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/rental app1.jpeg', '/work/rental app 2.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -380,7 +380,7 @@ export default function Work() {
           </motion.div>
 
           {/* Sekilas Tugas */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/sekilastaask1.jpeg', '/work/seilastask2.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/sekilastaask1.jpeg', '/work/seilastask2.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -394,7 +394,7 @@ export default function Work() {
           </motion.div>
 
           {/* Admin Kasir Imzy */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/kasir imzy1.jpg', '/work/kasir imzy 2.jpg', '/work/kasir imzy 3.jpg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/kasir imzy1.jpg', '/work/kasir imzy 2.jpg', '/work/kasir imzy 3.jpg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -408,7 +408,7 @@ export default function Work() {
           </motion.div>
 
           {/* Suara Mata */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/SUARA MATA 0.jpeg', '/work/SUARA MATA1.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/SUARA MATA 0.jpeg', '/work/SUARA MATA1.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -423,7 +423,7 @@ export default function Work() {
 
 
           {/* Plant Disease App */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/plantdieseup.png'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/plantdieseup.png'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -437,7 +437,7 @@ export default function Work() {
           </motion.div>
 
           {/* Komit Web */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/komit1.png', '/work/komit2.png'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/komit1.png', '/work/komit2.png'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
@@ -451,7 +451,7 @@ export default function Work() {
           </motion.div>
 
           {/* Manajemen Ruang */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer" onClick={() => openModal(['/work/manajemeng raungan 1.jpeg'])}>
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/manajemeng raungan 1.jpeg'])}>
             {/* View Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
               <Eye size={20} />
