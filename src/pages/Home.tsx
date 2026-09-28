@@ -39,7 +39,7 @@ const WordReveal = ({ text }: { text: string }) => {
 export default function Home() {
   const { lang } = useLanguage()
   const lanyardContainerRef = useRef(null)
-  const isLanyardInView = useInView(lanyardContainerRef, { once: false, amount: 0.1 })
+  const isLanyardInView = useInView(lanyardContainerRef, { once: true, amount: 0.1 })
 
   useEffect(() => {
     if (window.location.hash === '#about') {

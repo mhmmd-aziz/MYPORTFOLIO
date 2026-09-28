@@ -30,7 +30,7 @@ export default function Experience() {
 
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10">
+      <div className="max-w-7xl mx-auto py-12 px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10">
         
         {/* Sticky Image Section (Left) */}
         <motion.div 

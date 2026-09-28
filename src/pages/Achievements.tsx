@@ -44,7 +44,7 @@ export default function Achievements() {
 
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto py-12 relative z-10">
+      <div className="max-w-7xl mx-auto py-12 px-4 md:px-6 relative z-10">
         <motion.p 
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }}
           className="font-mono text-xs text-acid-lime uppercase tracking-widest mb-4"

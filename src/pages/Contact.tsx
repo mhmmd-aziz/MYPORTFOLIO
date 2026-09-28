@@ -8,7 +8,7 @@ export default function Contact() {
 
   return (
     <PageTransition>
-      <div className="max-w-4xl mx-auto text-center py-24 overflow-hidden">
+      <div className="max-w-4xl mx-auto text-center py-24 px-4 md:px-6 overflow-hidden">
         <motion.p 
           initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.5 }}
           className="font-mono text-xs text-acid-lime uppercase tracking-widest mb-4"

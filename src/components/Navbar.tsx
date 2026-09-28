@@ -41,12 +41,12 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-ink-black/80 backdrop-blur-md border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 h-10 group">
           <img src="/logo.png" alt="Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform" />
           <span className="font-display text-xl tracking-wider mt-1 group-hover:text-acid-lime transition-colors">MUHAMMAD AZIZ</span>
         </Link>
-        <div className="flex items-center gap-6 lg:gap-8 h-full">
+        <div className="flex items-center gap-4 md:gap-6 lg:gap-8 h-full">
           <div className="hidden md:block h-full relative">
             <GooeyNav
               key={lang} // re-mount when language changes to refresh labels

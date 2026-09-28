@@ -52,7 +52,7 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-ink-black text-paper-white texture-bg relative">
+    <div className="min-h-screen bg-ink-black text-paper-white texture-bg relative overflow-x-hidden">
       <ClickSpark sparkColor="#B7FF00" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
         <AnimatePresence mode="wait">
         {isLoading ? (
