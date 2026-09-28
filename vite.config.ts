@@ -9,15 +9,27 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Core React — always needed
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          // Animation — loaded upfront but separate from vendor
-          'vendor-framer': ['framer-motion'],
-          // Three.js ecosystem — only loaded when Lanyard is triggered
-          'vendor-three': ['three', 'meshline'],
-          'vendor-r3f': ['@react-three/fiber', '@react-three/drei'],
-          'vendor-rapier': ['@react-three/rapier'],
+        // Function form required by Rollup's ManualChunksFunction type
+        manualChunks(id) {
+          if (id.includes('@react-three/rapier') || id.includes('@dimforge')) {
+            return 'vendor-rapier'
+          }
+          if (id.includes('@react-three/fiber') || id.includes('@react-three/drei')) {
+            return 'vendor-r3f'
+          }
+          if (id.includes('/three/') || id.includes('/meshline/')) {
+            return 'vendor-three'
+          }
+          if (id.includes('framer-motion')) {
+            return 'vendor-framer'
+          }
+          if (
+            id.includes('/react/') ||
+            id.includes('/react-dom/') ||
+            id.includes('react-router-dom')
+          ) {
+            return 'vendor-react'
+          }
         },
       },
     },
