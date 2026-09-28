@@ -1,9 +1,19 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import PageTransition from '../components/PageTransition'
 import { useLanguage } from '../context/LanguageContext'
 
 export default function Experience() {
   const { lang } = useLanguage()
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const images = ["/work/komitaziz.jpeg", "/aziz 2.jpeg"]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [images.length])
 
   const content = {
     en: {
@@ -40,13 +50,28 @@ export default function Experience() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 h-[60vh] lg:h-[80vh] lg:sticky lg:top-24"
         >
-          <div className="w-full h-full border border-white/10 relative overflow-hidden group bg-near-black">
+          <div className="w-full h-full border border-white/10 relative overflow-hidden group bg-near-black cursor-pointer" onClick={() => setCurrentImageIndex(prev => (prev + 1) % images.length)}>
             <div className="absolute inset-0 bg-ink-black/40 group-hover:bg-transparent transition-colors duration-500 z-10" />
-            <img 
-              src="/aziz 2.jpeg" 
-              alt="Muhammad Aziz" 
-              className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-            />
+            
+            <AnimatePresence mode="wait">
+              <motion.img 
+                key={currentImageIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8 }}
+                src={images[currentImageIndex]} 
+                alt="Muhammad Aziz Experience" 
+                className="w-full h-full absolute inset-0 object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              />
+            </AnimatePresence>
+
+            {/* Slider Indicators */}
+            <div className="absolute top-4 right-4 z-20 flex gap-2">
+               {images.map((_, idx) => (
+                 <div key={idx} className={`w-2 h-2 rounded-full transition-colors ${idx === currentImageIndex ? 'bg-acid-lime' : 'bg-white/30'}`} />
+               ))}
+            </div>
             {/* Minimalist overlay text */}
             <div className="absolute bottom-0 left-0 p-6 z-20 w-full bg-gradient-to-t from-ink-black/90 to-transparent">
               <div className="flex flex-col gap-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
