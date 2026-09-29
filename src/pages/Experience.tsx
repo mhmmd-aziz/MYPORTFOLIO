@@ -10,8 +10,8 @@ import { SiReact, SiTypescript, SiLaravel, SiFlutter, SiFirebase, SiFastapi, SiP
 import { SiPython, SiPandas } from 'react-icons/si'
 import { FaBrain, FaEye, FaCrosshairs, FaFileAlt } from 'react-icons/fa'
 // System / Network Icons
-import { SiWindows, SiUbuntu, SiVmware, SiNginx } from 'react-icons/si'
-import { FaUsersCog, FaNetworkWired } from 'react-icons/fa'
+import { SiUbuntu, SiVmware, SiNginx } from 'react-icons/si'
+import { FaUsersCog, FaNetworkWired, FaWindows } from 'react-icons/fa'
 // Cybersecurity Icons
 import { FaShieldAlt, FaDatabase, FaKey, FaHashtag } from 'react-icons/fa'
 import { SiKalilinux } from 'react-icons/si'
@@ -149,7 +149,7 @@ export default function Experience() {
               <div>
                 <h3 className="font-mono text-white/50 text-sm mb-4">SYSTEM / NETWORK</h3>
                 <VelocityMarquee baseVelocity={-2}>
-                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiWindows className="text-2xl" /> Windows Server</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaWindows className="text-2xl" /> Windows Server</div>
                   <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiUbuntu className="text-2xl" /> Ubuntu</div>
                   <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiVmware className="text-2xl" /> VMware</div>
                   <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaUsersCog className="text-2xl" /> Active Directory</div>
