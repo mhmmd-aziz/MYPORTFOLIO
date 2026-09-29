@@ -4,17 +4,17 @@ import { RoundedBox, Text, Environment, ContactShadows, PresentationControls, Ht
 import * as THREE from 'three'
 import { motion } from 'framer-motion'
 import { 
-  SiHtml5, SiCss3, SiJavascript, SiTypescript, SiPython, 
+  SiHtml5, SiJavascript, SiTypescript, SiPython, 
   SiReact, SiLaravel, SiFlutter, SiNodedotjs, SiGo, 
-  SiPostgresql, SiAmazonaws, SiGit, SiLinux, SiDocker,
+  SiPostgresql, SiGit, SiLinux, SiDocker,
   SiArduino, SiBlender
 } from 'react-icons/si'
-import { FaShieldAlt, FaRobot, FaEye } from 'react-icons/fa'
+import { FaShieldAlt, FaRobot, FaEye, FaCss3, FaAws } from 'react-icons/fa'
 
 const skillsData = [
   // Row 1
   { id: '1', label: 'HTML', color: '#E34F26', physicalKey: '1', icon: SiHtml5 },
-  { id: '2', label: 'CSS', color: '#1572B6', physicalKey: '2', icon: SiCss3 },
+  { id: '2', label: 'CSS', color: '#1572B6', physicalKey: '2', icon: FaCss3 },
   { id: '3', label: 'JS', color: '#F7DF1E', physicalKey: '3', icon: SiJavascript },
   { id: '4', label: 'TS', color: '#3178C6', physicalKey: '4', icon: SiTypescript },
   { id: '5', label: 'Py', color: '#3776AB', physicalKey: '5', icon: SiPython },
@@ -26,7 +26,7 @@ const skillsData = [
   { id: 't', label: 'Go', color: '#00ADD8', physicalKey: 't', icon: SiGo },
   // Row 3
   { id: 'a', label: 'SQL', color: '#336791', physicalKey: 'a', icon: SiPostgresql },
-  { id: 's', label: 'AWS', color: '#FF9900', physicalKey: 's', icon: SiAmazonaws },
+  { id: 's', label: 'AWS', color: '#FF9900', physicalKey: 's', icon: FaAws },
   { id: 'd', label: 'Git', color: '#F05032', physicalKey: 'd', icon: SiGit },
   { id: 'f', label: 'Linux', color: '#FCC624', physicalKey: 'f', icon: SiLinux },
   { id: 'g', label: 'Dockr', color: '#2496ED', physicalKey: 'g', icon: SiDocker },
