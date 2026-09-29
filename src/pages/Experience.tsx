@@ -2,6 +2,22 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import PageTransition from '../components/PageTransition'
 import { useLanguage } from '../context/LanguageContext'
+import VelocityMarquee from '../components/VelocityMarquee'
+
+// Development Icons
+import { SiReact, SiTypescript, SiLaravel, SiFlutter, SiFirebase, SiFastapi, SiPostgresql } from 'react-icons/si'
+// AI / Data Icons
+import { SiPython, SiPandas } from 'react-icons/si'
+import { FaBrain, FaEye, FaCrosshairs, FaFileAlt } from 'react-icons/fa'
+// System / Network Icons
+import { SiWindows, SiUbuntu, SiVmware, SiNginx } from 'react-icons/si'
+import { FaUsersCog, FaNetworkWired } from 'react-icons/fa'
+// Cybersecurity Icons
+import { FaShieldAlt, FaDatabase, FaKey, FaHashtag } from 'react-icons/fa'
+import { SiKalilinux } from 'react-icons/si'
+// Hardware / IoT Icons
+import { SiArduino, SiEspressif } from 'react-icons/si'
+import { FaWifi, FaMicrochip, FaCube, FaPrint } from 'react-icons/fa'
 
 export default function Experience() {
   const { lang } = useLanguage()
@@ -106,46 +122,63 @@ export default function Experience() {
             <p className="font-mono text-xs text-acid-lime uppercase tracking-widest mb-4">/ 05 {t.skills}</p>
             <h2 className="font-display text-5xl md:text-6xl mb-12">TECHNICAL <br/> ARSENAL</h2>
             
-            <div className="space-y-8">
+            <div className="space-y-12">
               <div>
                 <h3 className="font-mono text-white/50 text-sm mb-4">{t.dev}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['React', 'TypeScript', 'Laravel', 'Flutter', 'Firebase', 'FastAPI', 'PostgreSQL'].map(s => (
-                    <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 text-sm hover:border-acid-lime/50 hover:text-acid-lime transition-colors cursor-default">{s}</span>
-                  ))}
-                </div>
+                <VelocityMarquee baseVelocity={-2}>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiReact className="text-2xl" /> React</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiTypescript className="text-2xl" /> TypeScript</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiLaravel className="text-2xl" /> Laravel</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiFlutter className="text-2xl" /> Flutter</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiFirebase className="text-2xl" /> Firebase</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiFastapi className="text-2xl" /> FastAPI</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiPostgresql className="text-2xl" /> PostgreSQL</div>
+                </VelocityMarquee>
               </div>
               <div>
                 <h3 className="font-mono text-white/50 text-sm mb-4">AI / DATA</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Python', 'Machine Learning', 'Computer Vision', 'YOLO', 'OCR', 'Pandas'].map(s => (
-                    <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 text-sm hover:border-acid-lime/50 hover:text-acid-lime transition-colors cursor-default">{s}</span>
-                  ))}
-                </div>
+                <VelocityMarquee baseVelocity={2}>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiPython className="text-2xl" /> Python</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaBrain className="text-2xl" /> Machine Learning</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaEye className="text-2xl" /> Computer Vision</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaCrosshairs className="text-2xl" /> YOLO</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaFileAlt className="text-2xl" /> OCR</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiPandas className="text-2xl" /> Pandas</div>
+                </VelocityMarquee>
               </div>
               <div>
                 <h3 className="font-mono text-white/50 text-sm mb-4">SYSTEM / NETWORK</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Windows Server', 'Ubuntu', 'VMware', 'Active Directory', 'DNS', 'Nginx'].map(s => (
-                    <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 text-sm hover:border-acid-lime/50 hover:text-acid-lime transition-colors cursor-default">{s}</span>
-                  ))}
-                </div>
+                <VelocityMarquee baseVelocity={-2}>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiWindows className="text-2xl" /> Windows Server</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiUbuntu className="text-2xl" /> Ubuntu</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiVmware className="text-2xl" /> VMware</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaUsersCog className="text-2xl" /> Active Directory</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaNetworkWired className="text-2xl" /> DNS</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiNginx className="text-2xl" /> Nginx</div>
+                </VelocityMarquee>
               </div>
               <div>
                 <h3 className="font-mono text-white/50 text-sm mb-4">{t.cybersecurity || 'CYBERSECURITY'}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Penetration Testing', 'Metasploit', 'SQLmap', 'Nmap', 'Cryptography', 'Hashcat'].map(s => (
-                    <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 text-sm hover:border-acid-lime/50 hover:text-acid-lime transition-colors cursor-default">{s}</span>
-                  ))}
-                </div>
+                <VelocityMarquee baseVelocity={2}>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaShieldAlt className="text-2xl" /> Penetration Testing</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiKalilinux className="text-2xl" /> Metasploit</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaDatabase className="text-2xl" /> SQLmap</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaNetworkWired className="text-2xl" /> Nmap</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaKey className="text-2xl" /> Cryptography</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaHashtag className="text-2xl" /> Hashcat</div>
+                </VelocityMarquee>
               </div>
               <div>
                 <h3 className="font-mono text-white/50 text-sm mb-4">HARDWARE / IOT</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Arduino', 'ESP32', 'IoT Sensors', 'Microcontrollers', 'FreeCAD', 'Bambu Studio', '3D Printing'].map(s => (
-                    <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 text-sm hover:border-acid-lime/50 hover:text-acid-lime transition-colors cursor-default">{s}</span>
-                  ))}
-                </div>
+                <VelocityMarquee baseVelocity={-2}>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiArduino className="text-2xl" /> Arduino</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><SiEspressif className="text-2xl" /> ESP32</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaWifi className="text-2xl" /> IoT Sensors</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaMicrochip className="text-2xl" /> Microcontrollers</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaCube className="text-2xl" /> FreeCAD</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaCube className="text-2xl" /> Bambu Studio</div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-lg hover:border-acid-lime/50 hover:text-acid-lime transition-colors"><FaPrint className="text-2xl" /> 3D Printing</div>
+                </VelocityMarquee>
               </div>
             </div>
           </motion.div>
