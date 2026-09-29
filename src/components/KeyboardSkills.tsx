@@ -1,65 +1,108 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { RoundedBox, Text, Environment, ContactShadows, PresentationControls, Html } from '@react-three/drei'
+import { RoundedBox, Text, Environment, ContactShadows, PresentationControls } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion } from 'framer-motion'
-import { 
-  SiHtml5, SiJavascript, SiTypescript, SiPython, 
-  SiReact, SiLaravel, SiFlutter, SiNodedotjs, SiGo, 
+import React from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import {
+  SiHtml5, SiJavascript, SiTypescript, SiPython,
+  SiReact, SiLaravel, SiFlutter, SiNodedotjs, SiGo,
   SiPostgresql, SiGit, SiLinux, SiDocker,
   SiArduino, SiBlender
 } from 'react-icons/si'
 import { FaShieldAlt, FaRobot, FaEye, FaCss3, FaAws } from 'react-icons/fa'
 
 const skillsData = [
-  // Row 1
-  { id: '1', label: 'HTML', color: '#E34F26', physicalKey: '1', icon: SiHtml5 },
-  { id: '2', label: 'CSS', color: '#1572B6', physicalKey: '2', icon: FaCss3 },
-  { id: '3', label: 'JS', color: '#F7DF1E', physicalKey: '3', icon: SiJavascript },
-  { id: '4', label: 'TS', color: '#3178C6', physicalKey: '4', icon: SiTypescript },
-  { id: '5', label: 'Py', color: '#3776AB', physicalKey: '5', icon: SiPython },
-  // Row 2
-  { id: 'q', label: 'React', color: '#61DAFB', physicalKey: 'q', icon: SiReact },
-  { id: 'w', label: 'Larav', color: '#FF2D20', physicalKey: 'w', icon: SiLaravel },
-  { id: 'e', label: 'Flutt', color: '#02569B', physicalKey: 'e', icon: SiFlutter },
-  { id: 'r', label: 'Node', color: '#339933', physicalKey: 'r', icon: SiNodedotjs },
-  { id: 't', label: 'Go', color: '#00ADD8', physicalKey: 't', icon: SiGo },
-  // Row 3
-  { id: 'a', label: 'SQL', color: '#336791', physicalKey: 'a', icon: SiPostgresql },
-  { id: 's', label: 'AWS', color: '#FF9900', physicalKey: 's', icon: FaAws },
-  { id: 'd', label: 'Git', color: '#F05032', physicalKey: 'd', icon: SiGit },
-  { id: 'f', label: 'Linux', color: '#FCC624', physicalKey: 'f', icon: SiLinux },
-  { id: 'g', label: 'Dockr', color: '#2496ED', physicalKey: 'g', icon: SiDocker },
-  // Row 4
-  { id: 'z', label: 'Sec', color: '#444444', physicalKey: 'z', icon: FaShieldAlt },
-  { id: 'x', label: 'IoT', color: '#00979D', physicalKey: 'x', icon: SiArduino },
-  { id: 'c', label: '3D', color: '#FF6600', physicalKey: 'c', icon: SiBlender },
-  { id: 'v', label: 'AI', color: '#FFD43B', physicalKey: 'v', icon: FaRobot },
-  { id: 'b', label: 'CV', color: '#412991', physicalKey: 'b', icon: FaEye },
+  { id: '1', label: 'HTML',    color: '#E34F26', physicalKey: '1', icon: SiHtml5 },
+  { id: '2', label: 'CSS',     color: '#1572B6', physicalKey: '2', icon: FaCss3 },
+  { id: '3', label: 'JS',      color: '#F7DF1E', physicalKey: '3', icon: SiJavascript },
+  { id: '4', label: 'TS',      color: '#3178C6', physicalKey: '4', icon: SiTypescript },
+  { id: '5', label: 'Python',  color: '#3776AB', physicalKey: '5', icon: SiPython },
+  { id: 'q', label: 'React',   color: '#61DAFB', physicalKey: 'q', icon: SiReact },
+  { id: 'w', label: 'Laravel', color: '#FF2D20', physicalKey: 'w', icon: SiLaravel },
+  { id: 'e', label: 'Flutter', color: '#02569B', physicalKey: 'e', icon: SiFlutter },
+  { id: 'r', label: 'Node',    color: '#339933', physicalKey: 'r', icon: SiNodedotjs },
+  { id: 't', label: 'Go',      color: '#00ADD8', physicalKey: 't', icon: SiGo },
+  { id: 'a', label: 'SQL',     color: '#336791', physicalKey: 'a', icon: SiPostgresql },
+  { id: 's', label: 'AWS',     color: '#FF9900', physicalKey: 's', icon: FaAws },
+  { id: 'd', label: 'Git',     color: '#F05032', physicalKey: 'd', icon: SiGit },
+  { id: 'f', label: 'Linux',   color: '#FCC624', physicalKey: 'f', icon: SiLinux },
+  { id: 'g', label: 'Docker',  color: '#2496ED', physicalKey: 'g', icon: SiDocker },
+  { id: 'z', label: 'SecOps',  color: '#444444', physicalKey: 'z', icon: FaShieldAlt },
+  { id: 'x', label: 'IoT',     color: '#00979D', physicalKey: 'x', icon: SiArduino },
+  { id: 'c', label: '3D',      color: '#FF6600', physicalKey: 'c', icon: SiBlender },
+  { id: 'v', label: 'AI',      color: '#FFD43B', physicalKey: 'v', icon: FaRobot },
+  { id: 'b', label: 'CompVis', color: '#412991', physicalKey: 'b', icon: FaEye },
 ]
 
-function Key({ data, position, activeKey }: { data: any, position: [number, number, number], activeKey: string | null }) {
+function createIconTexture(IconComponent: React.ComponentType<any>, iconColor: string): Promise<THREE.CanvasTexture> {
+  return new Promise((resolve) => {
+    try {
+      const svgMarkup = renderToStaticMarkup(
+        React.createElement(IconComponent as React.FC, { color: iconColor, size: 96 })
+      )
+      const svgDataUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgMarkup)
+      const canvas = document.createElement('canvas')
+      canvas.width = 128
+      canvas.height = 128
+      const ctx = canvas.getContext('2d')!
+      const img = new Image()
+      img.crossOrigin = 'anonymous'
+      img.onload = () => {
+        ctx.clearRect(0, 0, 128, 128)
+        ctx.drawImage(img, 16, 16, 96, 96)
+        const tex = new THREE.CanvasTexture(canvas)
+        tex.needsUpdate = true
+        resolve(tex)
+      }
+      img.onerror = () => {
+        ctx.fillStyle = iconColor
+        ctx.font = 'bold 48px Arial'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.fillText('?', 64, 64)
+        resolve(new THREE.CanvasTexture(canvas))
+      }
+      img.src = svgDataUrl
+    } catch {
+      resolve(new THREE.CanvasTexture(document.createElement('canvas')))
+    }
+  })
+}
+
+interface KeyProps {
+  data: (typeof skillsData)[number]
+  position: [number, number, number]
+  activeKey: string | null
+  catPressKey: string | null
+}
+
+function Key({ data, position, activeKey, catPressKey }: KeyProps) {
   const ref = useRef<THREE.Group>(null!)
   const [hovered, setHover] = useState(false)
   const [pressed, setPressed] = useState(false)
+  const [iconTexture, setIconTexture] = useState<THREE.CanvasTexture | null>(null)
 
-  // React to physical keyboard
+  const isLight = ['#F7DF1E', '#FCC624', '#FFD43B', '#61DAFB'].includes(data.color)
+  const textColor = isLight ? '#111111' : '#ffffff'
+
   useEffect(() => {
-    if (activeKey === data.physicalKey) {
+    createIconTexture(data.icon, textColor).then(setIconTexture)
+  }, [data.icon, textColor])
+
+  useEffect(() => {
+    if (activeKey === data.physicalKey || catPressKey === data.physicalKey) {
       setPressed(true)
       const t = setTimeout(() => setPressed(false), 150)
       return () => clearTimeout(t)
     }
-  }, [activeKey, data.physicalKey])
+  }, [activeKey, catPressKey, data.physicalKey])
 
   useFrame((_, delta) => {
     const targetY = pressed ? position[1] - 0.2 : position[1]
     ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, targetY, delta * 20)
   })
-
-  // To make text color contrast nicely
-  const isLight = ['#F7DF1E', '#FCC624', '#FFD43B', '#61DAFB'].includes(data.color)
-  const textColor = isLight ? '#111111' : '#ffffff'
 
   return (
     <group position={position} ref={ref}>
@@ -75,42 +118,20 @@ function Key({ data, position, activeKey }: { data: any, position: [number, numb
         castShadow
         receiveShadow
       >
-        <meshStandardMaterial 
-          color={hovered ? '#ffffff' : data.color} 
-          roughness={0.2} 
-          metalness={0.8} 
-        />
+        <meshStandardMaterial color={hovered ? '#ffffff' : data.color} roughness={0.2} metalness={0.8} />
       </RoundedBox>
-      
-      <Html 
-        transform 
-        center
-        position={[0, 0.31, 0]} 
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.25}
-        pointerEvents="none"
-        zIndexRange={[0, 0]}
-      >
-        <div style={{ 
-          color: hovered ? '#000000' : textColor, 
-          fontSize: '56px', 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-          width: '56px',
-          height: '56px',
-          lineHeight: 1
-        }}>
-          <data.icon style={{ width: '100%', height: '100%' }} />
-        </div>
-      </Html>
-
+      {iconTexture && (
+        <mesh position={[0, 0.311, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[0.68, 0.68]} />
+          <meshBasicMaterial map={iconTexture} transparent alphaTest={0.05} color={hovered ? '#000000' : '#ffffff'} />
+        </mesh>
+      )}
       <Text
-        position={[0.3, 0.31, 0.3]}
+        position={[0.35, 0.311, 0.36]}
         rotation={[-Math.PI / 2, 0, 0]}
-        fontSize={0.12}
-        color={hovered ? '#000000' : textColor}
-        fillOpacity={0.5}
+        fontSize={0.1}
+        color={textColor}
+        fillOpacity={0.35}
         anchorX="center"
         anchorY="middle"
       >
@@ -120,52 +141,110 @@ function Key({ data, position, activeKey }: { data: any, position: [number, numb
   )
 }
 
-function KeyboardLayout({ activeKey }: { activeKey: string | null }) {
+function KeyboardLayout({ activeKey, catPressKey }: { activeKey: string | null; catPressKey: string | null }) {
   return (
-    <group position={[0, 0, 0]}>
-      {/* Keyboard Base */}
+    <group>
       <RoundedBox args={[6.2, 0.4, 5.2]} radius={0.2} smoothness={4} position={[0, -0.4, 0]} receiveShadow>
         <meshStandardMaterial color="#0a0a0a" roughness={0.8} />
       </RoundedBox>
-
-      {/* Keys */}
       {skillsData.map((skill, index) => {
         const row = Math.floor(index / 5)
         const col = index % 5
-        const x = (col - 2) * 1.15
-        const z = (row - 1.5) * 1.15
         return (
-          <Key key={skill.id} data={skill} position={[x, 0, z]} activeKey={activeKey} />
+          <Key
+            key={skill.id}
+            data={skill}
+            position={[(col - 2) * 1.15, 0, (row - 1.5) * 1.15]}
+            activeKey={activeKey}
+            catPressKey={catPressKey}
+          />
         )
       })}
     </group>
   )
 }
 
-export default function KeyboardSkills() {
-  const [activeKey, setActiveKey] = useState<string | null>(null)
+const KEY_SCREEN_POS = skillsData.map((_, i) => ({
+  x: 20 + (i % 5) / 4 * 60,
+  y: 22 + Math.floor(i / 5) / 3 * 38,
+}))
+
+function TypingCat({ onCatPress }: { onCatPress: (key: string) => void }) {
+  const [idx, setIdx] = useState(10)
+  const [isTyping, setIsTyping] = useState(false)
+  const [facing, setFacing] = useState<'left' | 'right'>('right')
+  const idxRef = useRef(10)
+  const onPressRef = useRef(onCatPress)
+  onPressRef.current = onCatPress
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      setActiveKey(e.key.toLowerCase())
-    }
-    const handleKeyUp = () => {
-      setActiveKey(null)
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    window.addEventListener('keyup', handleKeyUp)
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-      window.removeEventListener('keyup', handleKeyUp)
-    }
+    const interval = setInterval(() => {
+      let newIdx: number
+      do { newIdx = Math.floor(Math.random() * skillsData.length) } while (newIdx === idxRef.current)
+      setFacing(KEY_SCREEN_POS[newIdx].x >= KEY_SCREEN_POS[idxRef.current].x ? 'right' : 'left')
+      idxRef.current = newIdx
+      setIdx(newIdx)
+      const t = setTimeout(() => {
+        setIsTyping(true)
+        onPressRef.current(skillsData[newIdx].physicalKey)
+        setTimeout(() => setIsTyping(false), 250)
+      }, 380)
+      return () => clearTimeout(t)
+    }, 1800)
+    return () => clearInterval(interval)
+  }, [])
+
+  const pos = KEY_SCREEN_POS[idx]
+
+  return (
+    <motion.div
+      animate={{ left: pos.x + '%', top: pos.y + '%' }}
+      transition={{ type: 'spring', stiffness: 90, damping: 14 }}
+      style={{ position: 'absolute', zIndex: 20, pointerEvents: 'none', userSelect: 'none' }}
+    >
+      <motion.div
+        animate={isTyping ? { y: [0, 12, 0] } : { y: [0, -4, 0] }}
+        transition={isTyping ? { duration: 0.15 } : { duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', transform: 'translate(-50%, -100%)' }}
+      >
+        <span style={{ fontSize: '2.2rem', display: 'inline-block', transform: 'scaleX(' + (facing === 'left' ? -1 : 1) + ')', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.9))' }}>
+          ??
+        </span>
+        {isTyping && (
+          <motion.span
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            style={{ marginTop: '-6px', fontSize: '0.6rem', fontFamily: 'monospace', fontWeight: 700, color: '#B7FF00', background: 'rgba(0,0,0,0.75)', padding: '1px 6px', borderRadius: '4px', whiteSpace: 'nowrap', letterSpacing: '0.05em' }}
+          >
+            {skillsData[idx]?.label}
+          </motion.span>
+        )}
+      </motion.div>
+    </motion.div>
+  )
+}
+
+export default function KeyboardSkills() {
+  const [activeKey, setActiveKey] = useState<string | null>(null)
+  const [catPressKey, setCatPressKey] = useState<string | null>(null)
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => setActiveKey(e.key.toLowerCase())
+    const up = () => setActiveKey(null)
+    window.addEventListener('keydown', down)
+    window.addEventListener('keyup', up)
+    return () => { window.removeEventListener('keydown', down); window.removeEventListener('keyup', up) }
+  }, [])
+
+  const handleCatPress = useCallback((key: string) => {
+    setCatPressKey(key)
+    setTimeout(() => setCatPressKey(null), 200)
   }, [])
 
   return (
     <div className="w-full h-[60vh] md:h-[80vh] relative cursor-pointer bg-near-black border border-white/10 rounded-xl overflow-hidden group">
-      
-      {/* Title Overlay */}
       <div className="absolute top-8 left-0 w-full text-center z-10 pointer-events-none">
-        <motion.h3 
+        <motion.h3
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="font-display text-4xl md:text-5xl text-white tracking-widest drop-shadow-2xl"
@@ -175,29 +254,15 @@ export default function KeyboardSkills() {
         <p className="font-mono text-acid-lime text-xs tracking-widest mt-2">(HINT: PRESS A KEY OR CLICK)</p>
       </div>
 
+      <TypingCat onCatPress={handleCatPress} />
+
       <Canvas camera={{ position: [0, 6, 4], fov: 45 }} shadows>
         <ambientLight intensity={0.5} />
-        <directionalLight 
-          position={[10, 10, 5]} 
-          intensity={1.5} 
-          castShadow 
-          shadow-mapSize={1024}
-        />
-        <spotLight 
-          position={[-10, 10, -5]} 
-          intensity={0.5} 
-          color="#B7FF00" 
-        />
-        
-        <PresentationControls 
-          global 
-          rotation={[-Math.PI / 4, 0, 0]} 
-          polar={[-Math.PI / 3, Math.PI / 3]} 
-          azimuth={[-Math.PI / 4, Math.PI / 4]}
-        >
-          <KeyboardLayout activeKey={activeKey} />
+        <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow shadow-mapSize={1024} />
+        <spotLight position={[-10, 10, -5]} intensity={0.5} color="#B7FF00" />
+        <PresentationControls global rotation={[-Math.PI / 4, 0, 0]} polar={[-Math.PI / 3, Math.PI / 3]} azimuth={[-Math.PI / 4, Math.PI / 4]}>
+          <KeyboardLayout activeKey={activeKey} catPressKey={catPressKey} />
         </PresentationControls>
-
         <ContactShadows position={[0, -0.6, 0]} opacity={0.4} scale={10} blur={2} far={2} />
         <Environment preset="city" />
       </Canvas>
