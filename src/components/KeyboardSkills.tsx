@@ -141,7 +141,55 @@ function Key({ data, position, activeKey, catPressKey }: KeyProps) {
   )
 }
 
-function KeyboardLayout({ activeKey, catPressKey }: { activeKey: string | null; catPressKey: string | null }) {
+// Cat uses 3D positions now
+function TypingCat3D({ activeIdx, isTyping }: { activeIdx: number, isTyping: boolean }) {
+  const row = Math.floor(activeIdx / 5)
+  const col = activeIdx % 5
+  const x = (col - 2) * 1.15
+  const z = (row - 1.5) * 1.15
+
+  return (
+    <group position={[x, 0.6, z]}>
+      <motion.group
+        animate={isTyping ? { y: [0, -0.3, 0] } : { y: [0, 0.2, 0] }}
+        transition={isTyping ? { duration: 0.15 } : { duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <Html transform center position={[0, 0.2, 0]} pointerEvents="none">
+          <div style={{ 
+            fontSize: '60px', 
+            filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.5))',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}>
+            🐱
+            {isTyping && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{
+                  marginTop: '0px',
+                  fontSize: '14px',
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  color: '#B7FF00',
+                  background: 'rgba(0,0,0,0.8)',
+                  padding: '4px 8px',
+                  borderRadius: '6px',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {skillsData[activeIdx]?.label}
+              </motion.span>
+            )}
+          </div>
+        </Html>
+      </motion.group>
+    </group>
+  )
+}
+
+function KeyboardLayout({ activeKey, catPressKey, activeCatIdx, isCatTyping }: { activeKey: string | null; catPressKey: string | null; activeCatIdx: number; isCatTyping: boolean }) {
   return (
     <group>
       <RoundedBox args={[6.2, 0.4, 5.2]} radius={0.2} smoothness={4} position={[0, -0.4, 0]} receiveShadow>
@@ -160,73 +208,19 @@ function KeyboardLayout({ activeKey, catPressKey }: { activeKey: string | null; 
           />
         )
       })}
+      <TypingCat3D activeIdx={activeCatIdx} isTyping={isCatTyping} />
     </group>
-  )
-}
-
-const KEY_SCREEN_POS = skillsData.map((_, i) => ({
-  x: 20 + (i % 5) / 4 * 60,
-  y: 22 + Math.floor(i / 5) / 3 * 38,
-}))
-
-function TypingCat({ onCatPress }: { onCatPress: (key: string) => void }) {
-  const [idx, setIdx] = useState(10)
-  const [isTyping, setIsTyping] = useState(false)
-  const [facing, setFacing] = useState<'left' | 'right'>('right')
-  const idxRef = useRef(10)
-  const onPressRef = useRef(onCatPress)
-  onPressRef.current = onCatPress
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      let newIdx: number
-      do { newIdx = Math.floor(Math.random() * skillsData.length) } while (newIdx === idxRef.current)
-      setFacing(KEY_SCREEN_POS[newIdx].x >= KEY_SCREEN_POS[idxRef.current].x ? 'right' : 'left')
-      idxRef.current = newIdx
-      setIdx(newIdx)
-      const t = setTimeout(() => {
-        setIsTyping(true)
-        onPressRef.current(skillsData[newIdx].physicalKey)
-        setTimeout(() => setIsTyping(false), 250)
-      }, 380)
-      return () => clearTimeout(t)
-    }, 1800)
-    return () => clearInterval(interval)
-  }, [])
-
-  const pos = KEY_SCREEN_POS[idx]
-
-  return (
-    <motion.div
-      animate={{ left: pos.x + '%', top: pos.y + '%' }}
-      transition={{ type: 'spring', stiffness: 90, damping: 14 }}
-      style={{ position: 'absolute', zIndex: 20, pointerEvents: 'none', userSelect: 'none' }}
-    >
-      <motion.div
-        animate={isTyping ? { y: [0, 12, 0] } : { y: [0, -4, 0] }}
-        transition={isTyping ? { duration: 0.15 } : { duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', transform: 'translate(-50%, -100%)' }}
-      >
-        <span style={{ fontSize: '2.2rem', display: 'inline-block', transform: 'scaleX(' + (facing === 'left' ? -1 : 1) + ')', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.9))' }}>
-          ??
-        </span>
-        {isTyping && (
-          <motion.span
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            style={{ marginTop: '-6px', fontSize: '0.6rem', fontFamily: 'monospace', fontWeight: 700, color: '#B7FF00', background: 'rgba(0,0,0,0.75)', padding: '1px 6px', borderRadius: '4px', whiteSpace: 'nowrap', letterSpacing: '0.05em' }}
-          >
-            {skillsData[idx]?.label}
-          </motion.span>
-        )}
-      </motion.div>
-    </motion.div>
   )
 }
 
 export default function KeyboardSkills() {
   const [activeKey, setActiveKey] = useState<string | null>(null)
   const [catPressKey, setCatPressKey] = useState<string | null>(null)
+
+  // 3D Cat State
+  const [activeCatIdx, setActiveCatIdx] = useState(10)
+  const [isCatTyping, setIsCatTyping] = useState(false)
+  const catIdxRef = useRef(10)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => setActiveKey(e.key.toLowerCase())
@@ -236,9 +230,27 @@ export default function KeyboardSkills() {
     return () => { window.removeEventListener('keydown', down); window.removeEventListener('keyup', up) }
   }, [])
 
-  const handleCatPress = useCallback((key: string) => {
-    setCatPressKey(key)
-    setTimeout(() => setCatPressKey(null), 200)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let newIdx: number
+      do { newIdx = Math.floor(Math.random() * skillsData.length) } while (newIdx === catIdxRef.current)
+      
+      catIdxRef.current = newIdx
+      setActiveCatIdx(newIdx)
+
+      const t = setTimeout(() => {
+        setIsCatTyping(true)
+        const key = skillsData[newIdx].physicalKey
+        setCatPressKey(key)
+        setTimeout(() => {
+          setIsCatTyping(false)
+          setCatPressKey(null)
+        }, 200)
+      }, 380)
+
+      return () => clearTimeout(t)
+    }, 1800)
+    return () => clearInterval(interval)
   }, [])
 
   return (
@@ -254,14 +266,12 @@ export default function KeyboardSkills() {
         <p className="font-mono text-acid-lime text-xs tracking-widest mt-2">(HINT: PRESS A KEY OR CLICK)</p>
       </div>
 
-      <TypingCat onCatPress={handleCatPress} />
-
       <Canvas camera={{ position: [0, 6, 4], fov: 45 }} shadows>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow shadow-mapSize={1024} />
         <spotLight position={[-10, 10, -5]} intensity={0.5} color="#B7FF00" />
         <PresentationControls global rotation={[-Math.PI / 4, 0, 0]} polar={[-Math.PI / 3, Math.PI / 3]} azimuth={[-Math.PI / 4, Math.PI / 4]}>
-          <KeyboardLayout activeKey={activeKey} catPressKey={catPressKey} />
+          <KeyboardLayout activeKey={activeKey} catPressKey={catPressKey} activeCatIdx={activeCatIdx} isCatTyping={isCatTyping} />
         </PresentationControls>
         <ContactShadows position={[0, -0.6, 0]} opacity={0.4} scale={10} blur={2} far={2} />
         <Environment preset="city" />
