@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import PageTransition from '../components/PageTransition'
 import { useLanguage } from '../context/LanguageContext'
 import VelocityMarquee from '../components/VelocityMarquee'
+import KeyboardSkills from '../components/KeyboardSkills'
 
 // Development Icons
 import { SiReact, SiTypescript, SiLaravel, SiFlutter, SiFirebase, SiFastapi, SiPostgresql } from 'react-icons/si'
@@ -181,6 +182,11 @@ export default function Experience() {
                 </VelocityMarquee>
               </div>
             </div>
+          </motion.div>
+
+          {/* Interactive Keyboard Section */}
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
+            <KeyboardSkills />
           </motion.div>
 
         </div>
