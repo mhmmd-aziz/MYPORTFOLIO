@@ -36,7 +36,7 @@ export default function VelocityMarquee({ children, baseVelocity = 2 }: Velocity
 
   const directionFactor = useRef<number>(1);
   useAnimationFrame((_, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 10);
+    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     // If scrolling up, scroll velocity becomes negative.
     if (velocityFactor.get() < 0) {
