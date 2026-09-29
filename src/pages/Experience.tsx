@@ -184,12 +184,14 @@ export default function Experience() {
             </div>
           </motion.div>
 
-          {/* Interactive Keyboard Section */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
-            <KeyboardSkills />
-          </motion.div>
-
         </div>
+      </div>
+
+      {/* Interactive Keyboard Section - Full Width */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24 relative z-10">
+        <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.1 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
+          <KeyboardSkills />
+        </motion.div>
       </div>
     </PageTransition>
   )
