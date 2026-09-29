@@ -300,7 +300,11 @@ export default function Work() {
           </motion.div>
 
           {/* Showroom Mobil */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black">
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group border border-white/10 hover:border-acid-lime/50 transition-colors p-8 bg-near-black cursor-pointer relative" onClick={() => openModal(['/work/showroom mobil 1.png', '/work/showroom mobil 2.png'])}>
+            {/* View Icon */}
+            <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-100 group-hover:border-acid-lime group-hover:text-acid-lime transition-all duration-500 bg-near-black z-10">
+              <Eye size={20} />
+            </div>
             <h3 className="font-display text-4xl text-white group-hover:text-acid-lime transition-colors mt-2 mb-2">SHOWROOM MOBIL</h3>
             <p className="font-mono text-xs tracking-widest text-acid-lime mb-6">WEB APPLICATION</p>
             <p className="text-white/70 mb-8">{lang === 'en' ? 'A car showroom management system using CodeIgniter.' : 'Sistem manajemen showroom mobil berbasis CodeIgniter.'}</p>
