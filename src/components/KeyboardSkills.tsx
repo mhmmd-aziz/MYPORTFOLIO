@@ -87,19 +87,20 @@ function Key({ data, position, activeKey }: { data: any, position: [number, numb
         center
         position={[0, 0.31, 0]} 
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.15}
+        scale={0.008}
         pointerEvents="none"
       >
         <div style={{ 
           color: hovered ? '#000000' : textColor, 
-          fontSize: '48px', 
+          fontSize: '80px', 
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center',
-          width: '60px',
-          height: '60px'
+          width: '80px',
+          height: '80px',
+          lineHeight: 1
         }}>
-          <data.icon />
+          <data.icon style={{ width: '100%', height: '100%' }} />
         </div>
       </Html>
 
