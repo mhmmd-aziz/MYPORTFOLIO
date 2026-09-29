@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { RoundedBox, Text, Environment, ContactShadows, PresentationControls } from '@react-three/drei'
+import { RoundedBox, Text, Environment, ContactShadows, PresentationControls, Html } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion } from 'framer-motion'
 import React from 'react'
@@ -150,41 +150,40 @@ function TypingCat3D({ activeIdx, isTyping }: { activeIdx: number, isTyping: boo
 
   return (
     <group position={[x, 0.6, z]}>
-      <motion.group
-        animate={isTyping ? { y: [0, -0.3, 0] } : { y: [0, 0.2, 0] }}
-        transition={isTyping ? { duration: 0.15 } : { duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <Html transform center position={[0, 0.2, 0]} pointerEvents="none">
-          <div style={{ 
+      <Html transform center position={[0, 0.2, 0]} pointerEvents="none">
+        <motion.div
+          animate={isTyping ? { y: [0, -25, 0] } : { y: [0, 15, 0] }}
+          transition={isTyping ? { duration: 0.15 } : { duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ 
             fontSize: '60px', 
             filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.5))',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
-          }}>
-            🐱
-            {isTyping && (
-              <motion.span
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                style={{
-                  marginTop: '0px',
-                  fontSize: '14px',
-                  fontFamily: 'monospace',
-                  fontWeight: 700,
-                  color: '#B7FF00',
-                  background: 'rgba(0,0,0,0.8)',
-                  padding: '4px 8px',
-                  borderRadius: '6px',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {skillsData[activeIdx]?.label}
-              </motion.span>
-            )}
-          </div>
-        </Html>
-      </motion.group>
+          }}
+        >
+          🐱
+          {isTyping && (
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              style={{
+                marginTop: '0px',
+                fontSize: '14px',
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                color: '#B7FF00',
+                background: 'rgba(0,0,0,0.8)',
+                padding: '4px 8px',
+                borderRadius: '6px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {skillsData[activeIdx]?.label}
+            </motion.span>
+          )}
+        </motion.div>
+      </Html>
     </group>
   )
 }
