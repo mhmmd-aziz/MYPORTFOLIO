@@ -40,7 +40,7 @@ function createIconTexture(IconComponent: React.ComponentType<any>, iconColor: s
   return new Promise((resolve) => {
     try {
       const svgMarkup = renderToStaticMarkup(
-        React.createElement(IconComponent as React.FC, { color: iconColor, size: 96 })
+        React.createElement(IconComponent as any, { color: iconColor, size: 96 })
       )
       const svgDataUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgMarkup)
       const canvas = document.createElement('canvas')
