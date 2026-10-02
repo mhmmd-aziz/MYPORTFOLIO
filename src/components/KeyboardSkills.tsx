@@ -141,34 +141,123 @@ function Key({ data, position, activeKey, catPressKey }: KeyProps) {
   )
 }
 
-// Cat uses 3D positions now
+function CatModel({ isTyping }: { isTyping: boolean }) {
+  const group = useRef<THREE.Group>(null!)
+  const tailRef = useRef<THREE.Mesh>(null!)
+  const pawsRef = useRef<THREE.Group>(null!)
+  
+  useFrame((state, delta) => {
+    if (!group.current) return
+    const idleY = 0.2 + Math.sin(state.clock.elapsedTime * 3) * 0.02
+    const targetY = isTyping ? 0.3 : idleY
+    group.current.position.y = THREE.MathUtils.lerp(group.current.position.y, targetY, delta * 15)
+    
+    // Rotate slightly when typing
+    const targetRotX = isTyping ? 0.15 : 0
+    group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, targetRotX, delta * 15)
+
+    // Wag tail
+    if (tailRef.current) {
+        tailRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 4) * 0.2
+    }
+    
+    // Move paws up when typing
+    if (pawsRef.current) {
+        const pawTargetY = isTyping ? 0.15 : 0
+        pawsRef.current.position.y = THREE.MathUtils.lerp(pawsRef.current.position.y, pawTargetY, delta * 20)
+    }
+  })
+
+  return (
+    <group ref={group} scale={0.8} position={[0, 0, -0.3]}>
+      {/* Body */}
+      <mesh position={[0, 0, 0]} castShadow>
+        <boxGeometry args={[0.4, 0.3, 0.5]} />
+        <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
+      </mesh>
+      {/* Head */}
+      <mesh position={[0, 0.25, 0.25]} castShadow>
+        <boxGeometry args={[0.35, 0.3, 0.35]} />
+        <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
+      </mesh>
+      {/* Ears */}
+      <mesh position={[-0.12, 0.45, 0.3]} rotation={[0, 0, 0.2]} castShadow>
+        <coneGeometry args={[0.08, 0.2, 4]} />
+        <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
+      </mesh>
+      <mesh position={[0.12, 0.45, 0.3]} rotation={[0, 0, -0.2]} castShadow>
+        <coneGeometry args={[0.08, 0.2, 4]} />
+        <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
+      </mesh>
+      {/* Eyes */}
+      <mesh position={[-0.08, 0.28, 0.43]} castShadow>
+        <sphereGeometry args={[0.04, 16, 16]} />
+        <meshStandardMaterial color="#B7FF00" />
+      </mesh>
+      <mesh position={[0.08, 0.28, 0.43]} castShadow>
+        <sphereGeometry args={[0.04, 16, 16]} />
+        <meshStandardMaterial color="#B7FF00" />
+      </mesh>
+      {/* Eye pupils */}
+      <mesh position={[-0.08, 0.28, 0.46]} castShadow>
+        <sphereGeometry args={[0.02, 16, 16]} />
+        <meshStandardMaterial color="#000" />
+      </mesh>
+      <mesh position={[0.08, 0.28, 0.46]} castShadow>
+        <sphereGeometry args={[0.02, 16, 16]} />
+        <meshStandardMaterial color="#000" />
+      </mesh>
+      {/* Nose */}
+      <mesh position={[0, 0.22, 0.44]} castShadow>
+        <sphereGeometry args={[0.02, 16, 16]} />
+        <meshStandardMaterial color="#FF7777" />
+      </mesh>
+      {/* Tail */}
+      <mesh ref={tailRef} position={[0, 0.15, -0.25]} rotation={[-0.5, 0, 0]} castShadow>
+        <cylinderGeometry args={[0.03, 0.04, 0.5]} />
+        <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
+      </mesh>
+      
+      {/* Front Paws */}
+      <group ref={pawsRef} position={[0, -0.15, 0.25]}>
+          <mesh position={[-0.1, 0, 0.1]} castShadow>
+              <boxGeometry args={[0.08, 0.1, 0.15]} />
+              <meshStandardMaterial color="#ffffff" roughness={0.8} />
+          </mesh>
+          <mesh position={[0.1, 0, 0.1]} castShadow>
+              <boxGeometry args={[0.08, 0.1, 0.15]} />
+              <meshStandardMaterial color="#ffffff" roughness={0.8} />
+          </mesh>
+      </group>
+    </group>
+  )
+}
+
 function TypingCat3D({ activeIdx, isTyping }: { activeIdx: number, isTyping: boolean }) {
   const row = Math.floor(activeIdx / 5)
   const col = activeIdx % 5
   const x = (col - 2) * 1.15
   const z = (row - 1.5) * 1.15
 
+  const groupRef = useRef<THREE.Group>(null!)
+  
+  useFrame((_, delta) => {
+    if (groupRef.current) {
+      groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, x, delta * 10)
+      groupRef.current.position.z = THREE.MathUtils.lerp(groupRef.current.position.z, z, delta * 10)
+    }
+  })
+
   return (
-    <group position={[x, 0.6, z]}>
-      <Html transform center position={[0, 0.2, 0]} pointerEvents="none">
-        <motion.div
-          animate={isTyping ? { y: [0, -25, 0] } : { y: [0, 15, 0] }}
-          transition={isTyping ? { duration: 0.15 } : { duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ 
-            fontSize: '60px', 
-            filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.5))',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}
-        >
-          🐱
+    <group ref={groupRef} position={[x, 0.6, z]}>
+      <CatModel isTyping={isTyping} />
+      <Html transform center position={[0, 0.8, 0]} pointerEvents="none">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {isTyping && (
             <motion.span
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.7, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               style={{
-                marginTop: '0px',
                 fontSize: '14px',
                 fontFamily: 'monospace',
                 fontWeight: 700,
@@ -182,7 +271,7 @@ function TypingCat3D({ activeIdx, isTyping }: { activeIdx: number, isTyping: boo
               {skillsData[activeIdx]?.label}
             </motion.span>
           )}
-        </motion.div>
+        </div>
       </Html>
     </group>
   )
